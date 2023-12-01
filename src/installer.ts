@@ -292,13 +292,6 @@ async function macInstallOM(version: VersionType): Promise<void> {
     `installer -verbose -pkg ${pkg} -target CurrentUserHomeDirectory`
   )
 
-  const out = await exec.getExecOutput('find', ['/Users/runner', '-name', 'omc'])
-
-  if (out.exitCode !== 0) {
-    core.debug(`Error message: ${out.stderr}`)
-    core.setFailed(Error(`Couldn't find omc. Exit code: ${out.exitCode}`))
-  }
-
   // Update PATH
   const pathToOmc = '/Users/runner/opt/omc/bin'
   core.info(`Adding ${pathToOmc} to PATH`)
